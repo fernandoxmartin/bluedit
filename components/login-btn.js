@@ -1,19 +1,31 @@
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
 
-export default function Component() {
-  const { data: session } = useSession()
+export const Loginbtn = () => {
+  const { data: session } = useSession();
+
   if (session) {
     return (
       <>
-        Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        <Image
+          height={40}
+          width={40}
+          src={session.user.image}
+          alt="user image"
+          className="rounded-full"
+          priority
+        />
       </>
-    )
+    );
   }
   return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
-  )
-}
+    <div>
+      <button
+        className="px-4 py-2 rounded bg-light-primary text-light cursor-pointer"
+        onClick={() => signIn()}
+      >
+        Sign in
+      </button>
+    </div>
+  );
+};
