@@ -2,6 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { Header } from "./header";
+import { Menu } from "./menu";
+import { Posts } from "../components/posts";
 
 export const Layout = ({ children, title }) => {
   return (
@@ -14,8 +16,13 @@ export const Layout = ({ children, title }) => {
       </Head>
 
       <Header />
-
-      <main className="bg-light-bg">{children}</main>
+      <div className=" h-full flex items-center justify-center">
+        <main className="grid grid-cols-4 grid- gap-6 max-w-[1200px] w-full mt-8">
+          <Menu />
+          <Posts />
+          {children}
+        </main>
+      </div>
     </div>
   );
 };
