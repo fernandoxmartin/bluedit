@@ -6,25 +6,25 @@ export const Loginbtn = () => {
 
   if (session) {
     return (
-      <>
+      <div className="hidden lg:block">
         <Image
-          height={40}
-          width={40}
+          height={30}
+          width={30}
           src={session.user.image}
           alt="user image"
           className="rounded-full"
           priority
         />
-      </>
+      </div>
     );
   }
   return (
     <div>
       <button
-        className="px-4 py-2 rounded bg-light-primary text-light cursor-pointer"
+        className="px-4 py-2 rounded-lg bg-light-primary text-light text-xs cursor-pointer"
         onClick={() => signIn()}
       >
-        Sign in
+        Log In
       </button>
     </div>
   );

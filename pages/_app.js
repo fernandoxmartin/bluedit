@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import { Inter } from "@next/font/google";
+import { GlobalProvider } from "../context/global-context";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,7 +15,9 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <main className={`${inter.variable} font-sans`}>
-        <Component {...pageProps} />
+        <GlobalProvider>
+          <Component {...pageProps} />
+        </GlobalProvider>
       </main>
     </SessionProvider>
   );

@@ -6,7 +6,7 @@ import { CreatePostBtn } from "@/components/create-post-btn";
 export default function Home() {
   return (
     <Layout title="Bluedit">
-      <main className="">
+      <main className="overflow-hidden">
         <CreatePostBtn />
       </main>
     </Layout>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Header } from "./header";
 import { Menu } from "./menu";
 import { Posts } from "../components/posts";
+import { MobileNav } from "./mobile-nav";
 
 export const Layout = ({ children, title }) => {
   return (
@@ -16,8 +17,9 @@ export const Layout = ({ children, title }) => {
       </Head>
 
       <Header />
+      <MobileNav />
       <div className=" h-full flex items-center justify-center">
-        <main className="grid grid-cols-4 grid- gap-6 max-w-[1200px] w-full mt-8">
+        <main className="grid lg:grid-cols-4 gap-6 max-w-[1200px] w-full mt-2">
           <Menu />
           <Posts />
           {children}
