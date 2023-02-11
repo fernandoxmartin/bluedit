@@ -33,6 +33,8 @@ export const NavBtn = () => {
              after:bg-light-text 
              after:absolute
              after:rotate-45
+             dark:before:bg-light
+             dark:after:bg-light
              `
             : `absolute top-0.5  
             before:content-[''] 
@@ -52,6 +54,8 @@ export const NavBtn = () => {
              after:-translate-x-1
              after:bg-light-text 
              after:absolute
+             dark:before:bg-light
+             dark:after:bg-light
              `
         }
       ></div>

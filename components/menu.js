@@ -24,7 +24,7 @@ export const Menu = () => {
   ];
 
   return (
-    <div className="hidden lg:flex flex-col w-full text-light-text">
+    <div className="hidden lg:flex flex-col w-full text-light-text dark:text-dark-text">
       <h3 className="">Feeds</h3>
       <ul className="ml-4 my-2 mb-8">
         {feeds.map((feed) => {

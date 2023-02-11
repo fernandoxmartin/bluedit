@@ -18,7 +18,7 @@ export const Layout = ({ children, title }) => {
 
       <Header />
       <MobileNav />
-      <div className=" h-full flex items-center justify-center">
+      <div className="w-full h-full min-h-screen flex justify-center bg-light-bg dark:bg-dark-bg">
         <main className="grid lg:grid-cols-4 gap-6 max-w-[1200px] w-full mt-2">
           <Menu />
           <Posts />

@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import { Inter } from "@next/font/google";
 import { GlobalProvider } from "../context/global-context";
+import { ThemeProvider } from "next-themes";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,9 +16,11 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <main className={`${inter.variable} font-sans`}>
-        <GlobalProvider>
-          <Component {...pageProps} />
-        </GlobalProvider>
+        <ThemeProvider attribute="class">
+          <GlobalProvider>
+            <Component {...pageProps} />
+          </GlobalProvider>
+        </ThemeProvider>
       </main>
     </SessionProvider>
   );

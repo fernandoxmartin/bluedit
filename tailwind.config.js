@@ -6,6 +6,7 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -14,14 +15,14 @@ module.exports = {
       colors: {
         light: "#FFFFFF",
         "light-bg": "#F0F0F0",
-        "light-primary": "#5578F3",
         "light-accent": "#E9EDF9",
         "light-text": "#000000",
+        "gray-1": "ffffff",
         dark: "#2C2C2C",
         "dark-bg": "#1C1C1C",
-        "dark-primary": "#5578F3",
         "dark-accent": "#212531",
         "dark-text": "#D2D2D2",
+        primary: "#5578F3",
       },
     },
   },
