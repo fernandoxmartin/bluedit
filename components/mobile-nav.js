@@ -39,8 +39,8 @@ export const MobileNav = () => {
     <div
       className={
         isOpen
-          ? "w-full h-[120vh] bg-primary absolute top-16 left-0  opacity-1 pointer-events-auto transition-all duration-500 dark:bg-dark lg:hidden"
-          : "w-full h-full bg-light absolute top-16 left-0 opacity-0 pointer-events-none transition-all duration-500 dark:bg-dark lg:hidden"
+          ? "w-full h-[120vh] bg-primary absolute top-16 left-0 z-10 opacity-1 pointer-events-auto transition-all duration-500 dark:bg-dark lg:hidden"
+          : "w-full h-full bg-light absolute top-16 left-0 z-10 opacity-0 pointer-events-none transition-all duration-500 dark:bg-dark lg:hidden"
       }
     >
       <div className="lg:flex flex-col w-full h-full text-light p-8 relative">

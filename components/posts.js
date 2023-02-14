@@ -6,18 +6,22 @@ export const Posts = () => {
   const posts = [
     {
       id: 1,
-      votes: 10,
-      title: "This is an example title",
-      content: "aosidjf osaidhf osaiudhf iusa dfiuasbdfiu asoidfu saoiudfb asd",
-      author: "user",
+      votes: 256,
+      title:
+        "This is an example title aisudbf kjhbasdl fhbalsd fbkiabs dfkhbas dkfa",
+      content:
+        "aosidjf osaidhf osaiudhf iusa dfiuasbdfiu asoidfu saoiudfb asd qiwuegri welriu wegr isbdgfksd fkghbdkf gdbhf gbkds fha sidufhb siduhbf sikabdf kahsbdkf hbsakdfhb lsadhfbiasdhbgfdsh",
+      user: "user",
+      sub: "example",
       comments: 3,
     },
     {
       id: 2,
-      votes: 7,
+      votes: 106,
       title: "This is an example title 2",
       content: "aosidjf osaidhf osaiudhf iusa dfiuasbdfiu asoidfu saoiudfb asd",
-      author: "user 2",
+      user: "user2",
+      sub: "example",
       comments: 2,
     },
   ];

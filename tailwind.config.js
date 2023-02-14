@@ -17,7 +17,6 @@ module.exports = {
         "light-bg": "#F0F0F0",
         "light-accent": "#E9EDF9",
         "light-text": "#000000",
-        "gray-1": "ffffff",
         dark: "#2C2C2C",
         "dark-bg": "#1C1C1C",
         "dark-accent": "#212531",
@@ -26,5 +25,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
