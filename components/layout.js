@@ -5,6 +5,7 @@ import { Header } from "./header";
 import { Menu } from "./menu";
 import { Posts } from "../components/posts";
 import { MobileNav } from "./mobile-nav";
+import { MobileCreate } from "./mobile-create";
 
 export const Layout = ({ children, title }) => {
   return (
@@ -18,10 +19,10 @@ export const Layout = ({ children, title }) => {
 
       <Header />
       <MobileNav />
+      <MobileCreate />
       <div className="w-full h-full min-h-screen flex justify-center bg-light-bg dark:bg-dark-bg">
         <main className="grid lg:grid-cols-4 gap-6 max-w-[1200px] w-full mt-2">
           <Menu />
-          <Posts />
           {children}
         </main>
       </div>
