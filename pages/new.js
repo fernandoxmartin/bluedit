@@ -3,7 +3,7 @@ import { Layout } from "@/components/layout";
 import { CreateCommunity } from "@/components/create-community";
 import { CreatePost } from "@/components/create-post";
 
-export default function New() {
+export default function New({ subs }) {
   const [form, setForm] = useState("post");
 
   const toggleForm = (e) => {
@@ -37,8 +37,17 @@ export default function New() {
             Community
           </button>
         </div>
-        {form == "post" ? <CreatePost /> : <CreateCommunity />}
+        {form == "post" ? <CreatePost subs={subs} /> : <CreateCommunity />}
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  const res = await fetch(`http://localhost:3000/api/subs`);
+  const subs = await res.json();
+
+  return {
+    props: { subs },
+  };
 }

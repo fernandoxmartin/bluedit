@@ -1,12 +1,12 @@
 import { unstable_getServerSession } from "next-auth";
-import { authOptions } from "./auth/[...nextauth]";
-import { prisma } from "../../lib/prismadb";
+import { authOptions } from "../auth/[...nextauth]";
+import { prisma } from "../../../lib/prismadb";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const session = await unstable_getServerSession(req, res, authOptions);
     if (!session) {
-      return res.status(401);
+      return res.status(401).json({ msg: "Please Sign In." });
     }
     const name = req.body.name;
     const description = req.body.description;

@@ -1,15 +1,29 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
 
 export const CreateCommunity = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
 
-  const submitCreateCommunity = async () => {
-    await axios.post("/api/new", {
-      name,
-      description,
-    });
+  const router = useRouter();
+
+  const submitCreateCommunity = async (e) => {
+    e.preventDefault();
+    await axios
+      .post("/api/new/sub", {
+        name,
+        description,
+      })
+      .then((res) => {
+        if (res.status == 200) {
+          router.push("/");
+        }
+      })
+      .catch((error) => {
+        setError(error.response.data.msg);
+      });
   };
 
   const handleName = (e) => {
