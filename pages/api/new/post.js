@@ -14,6 +14,9 @@ export default async function handler(req, res) {
     const prismaUser = await prisma.user.findUnique({
       where: { email: session?.user?.email },
     });
+    const sub = await prisma.sub.findUnique({
+      where: { id: subId },
+    });
 
     if (title.length > 44) {
       return res
@@ -36,11 +39,13 @@ export default async function handler(req, res) {
           title,
           body,
           userId: prismaUser.id,
+          username: prismaUser.name,
+          subname: sub.name,
         },
       });
       res.status(200).json(result);
     } catch (err) {
-      res.status(403).json({ err: "Error making post" });
+      res.status(403).json({ msg: "Error making post" });
     }
   }
 }

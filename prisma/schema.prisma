@@ -84,6 +84,8 @@ model Post {
   subId String
   comments Comment[]
   post_votes Post_Vote[]
+  username String
+  subname String
 }
 
 model Comment {

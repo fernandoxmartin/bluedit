@@ -25,6 +25,7 @@ export const CreatePost = ({ subs }) => {
       })
       .catch((error) => {
         setError(error.response.data.msg);
+        console.log(error);
       });
   };
 

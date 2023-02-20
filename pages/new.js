@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Layout } from "@/components/layout";
 import { CreateCommunity } from "@/components/create-community";
 import { CreatePost } from "@/components/create-post";
+import { getSubs } from "@/lib/getSubs";
 
 export default function New({ subs }) {
   const [form, setForm] = useState("post");
@@ -44,10 +45,8 @@ export default function New({ subs }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`http://localhost:3000/api/subs`);
-  const subs = await res.json();
-
+  const subs = await getSubs();
   return {
-    props: { subs },
+    props: { subs: JSON.parse(JSON.stringify(subs)) },
   };
 }

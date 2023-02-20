@@ -65,6 +65,8 @@ CREATE TABLE "Post" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "userId" TEXT NOT NULL,
     "subId" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
+    "subname" TEXT NOT NULL,
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );
