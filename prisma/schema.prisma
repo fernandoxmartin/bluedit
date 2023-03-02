@@ -59,17 +59,23 @@ model User {
   comments Comment[]
   post_votes Post_Vote[]
   subs Sub[]
+  joined Joined_Subs[]
+
+  @@unique([id, name])
 }
 
 model Sub {
   id String @id @default(uuid())
-  name String
+  name String @unique
   description String
   user User @relation(fields: [userId], references: [id])
   userId String
   posts Post[]
+  members Joined_Subs[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([id, name])
 }
 
 model Post {
@@ -78,14 +84,14 @@ model Post {
   body String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId, username], references: [id, name])
   userId String
-  sub Sub @relation(fields: [subId], references: [id])
+  username String
+  sub Sub @relation(fields: [subId, subname], references: [id, name])
   subId String
+  subname String
   comments Comment[]
   post_votes Post_Vote[]
-  username String
-  subname String
 }
 
 model Comment {
@@ -104,9 +110,18 @@ model Comment {
 
 model Post_Vote {
   id String @id @default(uuid())
-  vote Int
+  vote Boolean
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
   post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId String
+}
+
+model Joined_Subs {
+  id String @id @default(uuid())
+  join Boolean
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  sub Sub @relation(fields: [subId], references: [id], onDelete: Cascade)
+  subId String
 }

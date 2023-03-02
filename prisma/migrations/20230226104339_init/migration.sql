@@ -64,8 +64,8 @@ CREATE TABLE "Post" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "userId" TEXT NOT NULL,
-    "subId" TEXT NOT NULL,
     "username" TEXT NOT NULL,
+    "subId" TEXT NOT NULL,
     "subname" TEXT NOT NULL,
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
@@ -87,11 +87,21 @@ CREATE TABLE "Comment" (
 -- CreateTable
 CREATE TABLE "Post_Vote" (
     "id" TEXT NOT NULL,
-    "vote" INTEGER NOT NULL,
+    "vote" BOOLEAN NOT NULL,
     "userId" TEXT NOT NULL,
     "postId" TEXT NOT NULL,
 
     CONSTRAINT "Post_Vote_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Joined_Subs" (
+    "id" TEXT NOT NULL,
+    "join" BOOLEAN NOT NULL,
+    "userId" TEXT NOT NULL,
+    "subId" TEXT NOT NULL,
+
+    CONSTRAINT "Joined_Subs_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -109,6 +119,15 @@ CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationTok
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "User_id_name_key" ON "User"("id", "name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Sub_name_key" ON "Sub"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Sub_id_name_key" ON "Sub"("id", "name");
+
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -119,10 +138,10 @@ ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId"
 ALTER TABLE "Sub" ADD CONSTRAINT "Sub_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Post" ADD CONSTRAINT "Post_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Post" ADD CONSTRAINT "Post_userId_username_fkey" FOREIGN KEY ("userId", "username") REFERENCES "User"("id", "name") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Post" ADD CONSTRAINT "Post_subId_fkey" FOREIGN KEY ("subId") REFERENCES "Sub"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Post" ADD CONSTRAINT "Post_subId_subname_fkey" FOREIGN KEY ("subId", "subname") REFERENCES "Sub"("id", "name") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Comment" ADD CONSTRAINT "Comment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -138,3 +157,9 @@ ALTER TABLE "Post_Vote" ADD CONSTRAINT "Post_Vote_userId_fkey" FOREIGN KEY ("use
 
 -- AddForeignKey
 ALTER TABLE "Post_Vote" ADD CONSTRAINT "Post_Vote_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Joined_Subs" ADD CONSTRAINT "Joined_Subs_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Joined_Subs" ADD CONSTRAINT "Joined_Subs_subId_fkey" FOREIGN KEY ("subId") REFERENCES "Sub"("id") ON DELETE CASCADE ON UPDATE CASCADE;
