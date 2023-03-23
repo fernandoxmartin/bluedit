@@ -67,6 +67,7 @@ model User {
 model Sub {
   id String @id @default(uuid())
   name String @unique
+  slug String @unique
   description String
   user User @relation(fields: [userId], references: [id])
   userId String
@@ -75,7 +76,7 @@ model Sub {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([id, name])
+  @@unique([id, name, slug])
 }
 
 model Post {
@@ -84,12 +85,10 @@ model Post {
   body String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  user User @relation(fields: [userId, username], references: [id, name])
+  user User @relation(fields: [userId], references: [id])
   userId String
-  username String
-  sub Sub @relation(fields: [subId, subname], references: [id, name])
+  sub Sub @relation(fields: [subId], references: [id])
   subId String
-  subname String
   comments Comment[]
   post_votes Post_Vote[]
 }

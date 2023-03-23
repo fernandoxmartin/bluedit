@@ -35,12 +35,10 @@ export default async function handler(req, res) {
     try {
       const result = await prisma.post.create({
         data: {
+          userId: prismaUser.id,
           subId,
           title,
           body,
-          userId: prismaUser.id,
-          username: prismaUser.name,
-          subname: sub.name,
         },
       });
       res.status(200).json(result);
