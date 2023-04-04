@@ -11,11 +11,9 @@ export default async function handler(req, res) {
     const subId = req.body.sub;
     const title = req.body.title;
     const body = req.body.body;
+
     const prismaUser = await prisma.user.findUnique({
       where: { email: session?.user?.email },
-    });
-    const sub = await prisma.sub.findUnique({
-      where: { id: subId },
     });
 
     if (title.length > 44) {
@@ -39,6 +37,7 @@ export default async function handler(req, res) {
           subId,
           title,
           body,
+          voteCount: 0,
         },
       });
       res.status(200).json(result);

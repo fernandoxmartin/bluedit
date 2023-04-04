@@ -1,5 +1,5 @@
 import React from "react";
-import JoinButton from "./JoinButton";
+import JoinButton from "./joinButton";
 import ToastButton from "./ToastButton";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";

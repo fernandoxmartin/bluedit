@@ -91,6 +91,7 @@ model Post {
   subId String
   comments Comment[]
   post_votes Post_Vote[]
+  voteCount Int
 }
 
 model Comment {

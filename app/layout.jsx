@@ -24,7 +24,7 @@ export default function RootLayout({
           <Header />
           <Nav />
           <CreateButton />
-          <main className="grid lg:grid-cols-4 gap-6 max-w-[1200px] w-full mt-2">
+          <main className="grid lg:grid-cols-4 gap-2 max-w-[1200px] w-full mt-2">
             {children}
           </main>
         </Providers>

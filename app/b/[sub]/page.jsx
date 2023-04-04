@@ -1,5 +1,5 @@
 import Posts from "../../components/posts/posts";
-import AboutSub from "./AboutSub";
+import AboutSub from "./aboutSub";
 import { prisma } from "@/lib/prismadb";
 import { getUserId } from "@/lib/getUserId";
 
