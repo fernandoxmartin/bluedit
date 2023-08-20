@@ -5,7 +5,10 @@ import { useTheme } from "next-themes";
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
+  const [open, setOpen] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [filter, setFilter] = useState("top");
+  const [search, setSearch] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -35,12 +38,18 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
+        open,
+        setOpen,
         isOpen,
         toggleNav,
         isModalOpen,
         toggleModal,
         theme,
         handleTheme,
+        filter,
+        setFilter,
+        search,
+        setSearch,
       }}
     >
       {children}

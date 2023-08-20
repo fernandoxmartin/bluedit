@@ -11,15 +11,15 @@ export default function ToggleForms({ subs }) {
   };
 
   return (
-    <div className="w-full bg-light lg:rounded-xl col-span-2 mt-2 mb-6 dark:bg-dark dark:text-dark-text">
-      <div className="flex items-center justify-center">
+    <div className="w-full bg-light rounded-lg lg:rounded-xl mt-2 mb-6 p-4 lg:p-6 dark:bg-dark dark:text-dark-text">
+      <div className="flex items-center justify-center border-b-4 border-b-gray-100 dark:border-b-neutral-700">
         <button
           onClick={() => handleForm()}
           disabled={isCreateForm}
           className={
             isCreateForm
-              ? "w-full flex items-center justify-center bg-light py-4 border-t-4 border-t-primary disabled:bg-light"
-              : "w-full flex items-center justify-center bg-light-bg py-4 border-t-4 border-t-transparent"
+              ? "w-full flex items-center justify-center bg-light dark:bg-dark py-4 rounded-t border-t-4 border-t-primary disabled:bg-gray-100 dark:disabled:bg-neutral-700"
+              : "w-full flex items-center justify-center bg-light dark:bg-dark py-4 rounded border-t-4 border-t-transparent"
           }
         >
           Post
@@ -29,8 +29,8 @@ export default function ToggleForms({ subs }) {
           disabled={!isCreateForm}
           className={
             !isCreateForm
-              ? "w-full flex items-center justify-center bg-light py-4 border-t-4 border-t-primary disabled:bg-light"
-              : "w-full flex items-center justify-center bg-light-bg py-4 border-t-4 border-t-transparent"
+              ? "w-full flex items-center justify-center bg-light dark:bg-dark py-4 rounded-t border-t-4 border-t-primary disabled:bg-gray-100 dark:disabled:bg-neutral-700"
+              : "w-full flex items-center justify-center bg-light dark:bg-dark py-4 rounded border-t-4 border-t-transparent"
           }
         >
           Community

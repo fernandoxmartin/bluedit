@@ -21,7 +21,7 @@ export default function Comments() {
   });
 
   return (
-    <div className="w-full bg-light -mt-2">
+    <div className="w-full bg-light dark:bg-dark mt-2 md:rounded-md">
       <AddComment />
       <CommentList query={commentsQuery} />
     </div>

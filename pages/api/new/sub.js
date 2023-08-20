@@ -15,12 +15,14 @@ export default async function handler(req, res) {
     });
 
     if (subname.length > 20) {
-      return res
-        .status(403)
-        .json({ msg: "Name cannot be more than 20 characters long." });
+      return res.status(403).json({
+        msg: "Community name cannot be greater than 20 characters long!",
+      });
     }
     if (!subname.length) {
-      return res.status(403).json({ msg: "Please do not leave empty" });
+      return res
+        .status(403)
+        .json({ msg: "Community name cannot be left empty!" });
     }
     const slug = subname.split(" ").join("").toLowerCase();
 
@@ -35,7 +37,7 @@ export default async function handler(req, res) {
       });
       res.status(200).json(result);
     } catch (err) {
-      res.status(403).json({ err: "Error making community" });
+      res.status(403).json({ err: "Error, please try again!" });
     }
   }
 }

@@ -4,6 +4,7 @@ import { CgClose } from "react-icons/cg";
 import { usePathname } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function AddComment() {
   const [isFormOpen, setFormOpen] = useState(false);
@@ -26,22 +27,23 @@ export default function AddComment() {
   const submitComment = useMutation({
     mutationFn: () => addComment(),
     onSuccess: () => {
+      toast.success("Your comment was successfully posted!");
       queryClient.invalidateQueries(["comments"]);
       queryClient.invalidateQueries(["commentCount"]);
       setComment("");
       setFormOpen(false);
     },
     onError: (error) => {
-      console.log(error);
+      toast.error(error.response.data.msg);
     },
   });
 
   return (
     <div className="p-4">
       {isFormOpen ? (
-        <div className="w-full">
+        <div className="w-full ">
           <textarea
-            className="w-full h-24 p-4 border rounded-lg text-gray-700 text-sm"
+            className="w-full h-24 p-4 border dark:border-neutral-700 rounded-lg text-gray-700 text-sm dark:text-dark-text"
             placeholder="Leave a comment"
             value={comment}
             autoFocus={true}
@@ -49,11 +51,11 @@ export default function AddComment() {
           />
           <div className="flex items-center justify-between">
             <CgClose
-              className="text-2xl text-gray-700"
+              className="text-2xl text-gray-700 dark:text-neutral-700 cursor-pointer"
               onClick={() => setFormOpen(false)}
             />
             <button
-              className="bg-primary px-4 h-8 text-sm text-light rounded disabled:bg-gray-500"
+              className="bg-primary px-4 h-8 text-sm text-light rounded cursor-pointer disabled:bg-gray-500"
               disabled={comment.length < 1 ? true : false}
               onClick={() => submitComment.mutate()}
             >
@@ -63,7 +65,7 @@ export default function AddComment() {
         </div>
       ) : (
         <button
-          className="w-full h-10 p-4 border rounded-lg flex items-center text-sm text-gray-700"
+          className="w-full h-10 p-4 border dark:border-neutral-700 rounded-lg flex items-center text-sm text-gray-700 dark:text-dark-text"
           onClick={() => setFormOpen(true)}
         >
           Leave a comment

@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prismadb";
 import { getUserId } from "@/lib/getUserId";
 import PostCard from "@/app/components/posts/postCard";
 import Comments from "./comments";
+import Loading from "./loading";
 
 export default async function Post({ params }) {
   const post = await prisma.post.findUnique({

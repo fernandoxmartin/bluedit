@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter, usePathname } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function JoinButton({ sub, user }) {
   const router = useRouter();
@@ -11,7 +12,7 @@ export default function JoinButton({ sub, user }) {
   const handleUserJoin = async () => {
     // creator cannot leave community
     if (user.id === sub.userId) {
-      alert("You cannot leave a community you created!");
+      toast.error("You cannot leave a community you created!");
       return;
     }
     // if not member => join, else leave
@@ -30,7 +31,7 @@ export default function JoinButton({ sub, user }) {
         })
         .catch((error) => {
           setError(error.response.data.msg);
-          console.log(error);
+          toast.error(error.response.data.msg);
         });
     } else {
       await axios
@@ -42,7 +43,7 @@ export default function JoinButton({ sub, user }) {
         })
         .catch((error) => {
           setError(error.response.data.msg);
-          console.log(error);
+          toast.error(error.response.data.msg);
         });
     }
   };
@@ -51,7 +52,7 @@ export default function JoinButton({ sub, user }) {
     <>
       <button
         onClick={() => handleUserJoin()}
-        className="bg-primary h-10 w-full mt-8 rounded-lg text-light"
+        className="bg-primary h-10 w-full mt-8 rounded-md text-sm text-light"
       >
         {user.id === sub.userId || sub.members.find((e) => e.userId === user.id)
           ? "Joined"

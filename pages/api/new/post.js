@@ -16,18 +16,20 @@ export default async function handler(req, res) {
       where: { email: session?.user?.email },
     });
 
-    if (title.length > 44) {
+    if (title.length > 80) {
       return res
         .status(403)
-        .json({ msg: "Title cannot be more than 44 characters long." });
+        .json({ msg: "Post title cannot be greater than 80 characters long!" });
     }
     if (body.length > 500) {
       return res
         .status(403)
-        .json({ msg: "Body cannot be more than 500 characters long." });
+        .json({ msg: "Post body cannot be greater than 500 characters long!" });
     }
-    if (!title.length || !body.length || !subId.length) {
-      return res.status(403).json({ msg: "Please do not leave empty" });
+    if (!title.length || !subId.length) {
+      return res
+        .status(403)
+        .json({ msg: "Your post must include a community and title!" });
     }
 
     try {
@@ -39,10 +41,13 @@ export default async function handler(req, res) {
           body,
           voteCount: 0,
         },
+        include: {
+          sub: true,
+        },
       });
       res.status(200).json(result);
     } catch (err) {
-      res.status(403).json({ msg: "Error making post" });
+      res.status(403).json({ msg: "Error, please try again!" });
     }
   }
 }

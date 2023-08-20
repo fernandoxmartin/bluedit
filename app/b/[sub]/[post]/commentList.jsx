@@ -5,7 +5,7 @@ export default function CommentList({ query }) {
   const { isLoading, error, data } = query;
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="p-4">Loading...</div>;
   }
 
   if (error) {
@@ -13,9 +13,9 @@ export default function CommentList({ query }) {
   }
 
   return (
-    <div className="p-4 border-t border-gray-300">
+    <div className="p-4">
       {data.map((comment) => (
-        <div key={comment.id} className="my-4 border-b border-gray-300">
+        <div key={comment.id} className="my-4 ">
           <div className="flex text-xs">
             <div className="flex items-center">
               <div className="w-4 h-4 bg-primary rounded-full mr-2"></div>

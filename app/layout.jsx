@@ -2,19 +2,17 @@ import "./globals.css";
 import Header from "./components/header/header";
 import Providers from "./providers";
 import Nav from "./components/mobile/nav";
-import CreateButton from "./components/mobile/createButton";
-import { Inter } from "@next/font/google";
+import CreateCheck from "./components/mobile/createCheck";
+import Toast from "./components/toast";
+import { Inter } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  preload: true,
 });
 
-export default function RootLayout({
-  // Layouts must accept a children prop.
-  // This will be populated with nested layouts or pages
-  children,
-}) {
+export default function RootLayout({ modal, children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -23,10 +21,12 @@ export default function RootLayout({
         <Providers>
           <Header />
           <Nav />
-          <CreateButton />
-          <main className="grid lg:grid-cols-4 gap-2 max-w-[1200px] w-full mt-2">
+          <CreateCheck />
+          <main className="m-auto w-full max-w-[1000px] mt-2 lg:mt-6">
             {children}
           </main>
+          {modal}
+          <Toast />
         </Providers>
       </body>
     </html>

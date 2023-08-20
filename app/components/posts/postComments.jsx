@@ -41,13 +41,13 @@ export default function PostComments({ post }) {
   const pathname = usePathname();
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center text-gray-400 text-sm md:text-xs">
       {pathname === `/b/${post.sub.slug}/${post.id}` ? (
         <PostCommentsCount />
       ) : (
         <>
-          <p className="pr-1">{post.comments.length}</p>
-          <BiMessageDetail className="text-xl" />
+          <p className="pr-1">{post?.comments?.length}</p>
+          <BiMessageDetail className="text-base" />
         </>
       )}
     </div>

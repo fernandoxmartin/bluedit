@@ -2,6 +2,7 @@ import Posts from "../../components/posts/posts";
 import AboutSub from "./aboutSub";
 import { prisma } from "@/lib/prismadb";
 import { getUserId } from "@/lib/getUserId";
+import Filter from "@/app/components/posts/filter";
 
 export default async function Sub({ params }) {
   const sub = await prisma.sub.findUnique({
@@ -16,14 +17,18 @@ export default async function Sub({ params }) {
 
   return (
     <>
-      <Posts
-        posts={JSON.parse(JSON.stringify(sub.posts))}
-        user={JSON.parse(JSON.stringify(user))}
-      />
-      <AboutSub
-        sub={JSON.parse(JSON.stringify(sub))}
-        user={JSON.parse(JSON.stringify(user))}
-      />
+      <div className="w-full grid lg:grid-cols-[650px_auto] gap-2 lg:gap-4">
+        <div className="space-y-2">
+          <Filter />
+          <Posts user={JSON.parse(JSON.stringify(user))} />
+        </div>
+        <div className="space-y-2 row-start-1 lg:row-auto">
+          <AboutSub
+            sub={JSON.parse(JSON.stringify(sub))}
+            user={JSON.parse(JSON.stringify(user))}
+          />
+        </div>
+      </div>
     </>
   );
 }

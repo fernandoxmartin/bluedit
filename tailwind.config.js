@@ -22,9 +22,11 @@ module.exports = {
         "dark-bg": "#1C1C1C",
         "dark-accent": "#212531",
         "dark-text": "#D2D2D2",
-        primary: "#5578F3",
+        primary: "#186298",
+      },
+      backgroundImage: {
+        about: "url('/about.png')",
       },
     },
   },
-  plugins: [require("@tailwindcss/line-clamp")],
 };

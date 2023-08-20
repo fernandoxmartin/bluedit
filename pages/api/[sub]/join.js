@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const session = await getServerSession(req, res, authOptions);
     if (!session) {
-      return res.status(401).json({ msg: "Please Sign In." });
+      return res.status(401).json({ msg: "Must be logged in to join!" });
     }
     const subId = req.body.subId;
 
@@ -24,13 +24,13 @@ export default async function handler(req, res) {
       });
       res.status(200).json(result);
     } catch (err) {
-      res.status(403).json({ msg: "Error making post" });
+      res.status(403).json({ msg: "Error joining, please try again!" });
     }
   }
   if (req.method === "DELETE") {
     const session = await getServerSession(req, res, authOptions);
     if (!session) {
-      return res.status(401).json({ msg: "Please Sign In." });
+      return res.status(401).json({ msg: "Must be logged in to join!" });
     }
 
     const user = await prisma.user.findUnique({
@@ -47,7 +47,7 @@ export default async function handler(req, res) {
       });
       res.status(200).json(result);
     } catch (err) {
-      res.status(403).json({ msg: "Error making post" });
+      res.status(403).json({ msg: "Error leaving, please try again!" });
     }
   }
 }

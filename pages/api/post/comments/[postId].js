@@ -24,11 +24,17 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const session = await getServerSession(req, res, authOptions);
     if (!session) {
-      return res.status(401).json({ msg: "Please Sign In." });
+      return res
+        .status(401)
+        .json({ msg: "Must be logged in to leave a comment!" });
     }
 
     const postId = req.query.postId;
     const comment = req.body.comment;
+
+    if (!comment) {
+      return res.status(401).json({ msg: "Comment cannot be left empty!" });
+    }
 
     const user = await prisma.user.findUnique({
       where: { email: session?.user?.email },
@@ -44,7 +50,7 @@ export default async function handler(req, res) {
       });
       res.status(200).json(result);
     } catch (err) {
-      res.status(403).json({ msg: "Error making comment" });
+      res.status(403).json({ msg: "Error making comment, please try again!" });
     }
   }
 }

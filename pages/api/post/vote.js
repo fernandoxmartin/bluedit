@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     } catch (error) {
       res
         .status(403)
-        .json({ msg: "Error has occured while getting postVotes" });
+        .json({ msg: "Error has occured while getting post votes" });
     }
   }
 
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const session = await getServerSession(req, res, authOptions);
     if (!session) {
-      return res.status(401).json({ msg: "Please Sign In." });
+      return res.status(401).json({ msg: "Please Sign In!" });
     }
 
     const postId = req.body.postId;
@@ -68,7 +68,7 @@ export default async function handler(req, res) {
         res.status(200).json({ result, voteCount });
       }
     } catch (err) {
-      res.status(403).json({ msg: "Error making post vote" });
+      res.status(403).json({ msg: "Error, please try again!" });
     }
   }
 
@@ -76,7 +76,7 @@ export default async function handler(req, res) {
   if (req.method === "DELETE") {
     const session = await getServerSession(req, res, authOptions);
     if (!session) {
-      return res.status(401).json({ msg: "Please Sign In." });
+      return res.status(401).json({ msg: "Please Sign In!" });
     }
 
     const voteId = req.body.voteId;
@@ -112,7 +112,7 @@ export default async function handler(req, res) {
         res.status(200).json({ result, voteCount });
       }
     } catch (err) {
-      res.status(403).json({ msg: "Error deleting post vote" });
+      res.status(403).json({ msg: "Error deleting vote!" });
     }
   }
 
@@ -120,7 +120,7 @@ export default async function handler(req, res) {
   if (req.method === "PATCH") {
     const session = await getServerSession(req, res, authOptions);
     if (!session) {
-      return res.status(401).json({ msg: "Please Sign In." });
+      return res.status(401).json({ msg: "Please Sign In!" });
     }
 
     const voteId = req.body.voteId;
@@ -166,7 +166,7 @@ export default async function handler(req, res) {
         res.status(200).json({ result, voteCount });
       }
     } catch (err) {
-      res.status(403).json({ msg: "Error updating post vote" });
+      res.status(403).json({ msg: "Error updating vote!" });
     }
   }
 }

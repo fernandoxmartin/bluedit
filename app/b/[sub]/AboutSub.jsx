@@ -15,10 +15,10 @@ export default async function AboutSub({ sub, user }) {
   });
 
   return (
-    <div className="w-full h-full max-h-96 lg:rounded-xl flex flex-col items-center col-span-2 bg-light dark:bg-dark row-start-1 lg:row-start-auto lg:col-span-1">
-      <div className="bg-primary w-full h-20 flex items-center justify-center lg:rounded-t-lg">
+    <div className="w-full h-full max-h-96 lg:rounded-md mb-2 flex flex-col items-center col-span-2 bg-light dark:bg-dark row-start-1 lg:row-start-auto lg:col-span-1">
+      <div className="bg-primary w-full h-20 lg:h-14 flex items-center justify-center lg:rounded-t-md">
         <h1
-          className="text-light text-3xl drop-shadow-xl"
+          className="text-light text-3xl lg:text-xl drop-shadow-xl"
           style={{ textShadow: "2px 2px 6px #000000" }}
         >
           {sub.name}
@@ -26,7 +26,7 @@ export default async function AboutSub({ sub, user }) {
       </div>
       <div className="w-full p-4 px-6 flex flex-col">
         <div className="mb-4">
-          <h3 className="text-sm">About Community</h3>
+          <h3 className="text-md">About Community</h3>
           <div className="py-4">
             <p className="text-gray-400 dark:text-dark-text text-sm line-clamp-3">
               {sub.description}
