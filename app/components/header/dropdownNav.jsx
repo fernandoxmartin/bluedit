@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { BiChevronDown, BiHome, BiRocket } from "react-icons/bi";
+import { BiChevronDown, BiHome, BiGlobe } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useQueryClient } from "@tanstack/react-query";
 import UserAvatar from "../userAvatar";
@@ -17,7 +17,7 @@ export default function DropDownNav() {
   const data = useQueryClient()?.getQueryCache()?.queries[0]?.state?.data;
   const feeds = [
     { page: "Home", loc: "/", icon: <BiHome /> },
-    { page: "Following", loc: "/b/following", icon: <BiRocket /> },
+    // { page: "All", loc: "/all", icon: <BiGlobe /> },
   ];
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function DropDownNav() {
       </div>
       <ul
         className={`bg-white mt-2 overflow-y-auto rounded-b-md drop-shadow-lg shadow-xl shadow-neutral-400 dark:shadow-neutral-900 dark:bg-dark ${
-          open ? "max-h-84 " : "max-h-0"
+          open ? "max-h-84 pb-4 " : "max-h-0"
         } `}
       >
         <div className="w-full flex items-center px-4 sticky top-0 border-b bg-gray-100 border-gray-200 dark:bg-neutral-700 dark:border-neutral-700 ">
@@ -70,6 +70,38 @@ export default function DropDownNav() {
             className="placeholder:text-gray-700 p-2 py-3 outline-none w-full bg-gray-100 text-sm dark:bg-neutral-700 dark:placeholder:text-neutral-400"
           />
         </div>
+
+        {/* Default Feeds */}
+        <div className="p-4 text-xs font-bold">Feeds</div>
+        {feeds?.map((feed) => (
+          <li
+            key={feed?.page}
+            className={`p-2 pl-6 text-sm hover:bg-sky-600 hover:text-white cursor-pointer flex items-center dark:hover:bg-sky-600
+            ${
+              feed?.page?.toLowerCase() === selected?.toLowerCase() &&
+              "bg-gray-400 text-white dark:bg-neutral-700"
+            }
+            ${
+              feed?.page?.toLowerCase().startsWith(inputValue)
+                ? "block"
+                : "hidden"
+            }`}
+            onClick={() => {
+              if (feed?.page?.toLowerCase() !== selected.toLowerCase()) {
+                setSelected(feed?.page);
+                setSelectedIcon(feed?.icon);
+                setOpen(false);
+                setInputValue("");
+                router.push(`${feed?.loc}`);
+              }
+            }}
+          >
+            {" "}
+            <span className="mr-2 text-lg">{feed?.icon}</span>
+            {feed?.page}
+          </li>
+        ))}
+
         {/* User Communities */}
         {data?.length < 1 ? (
           <></>
@@ -106,36 +138,6 @@ export default function DropDownNav() {
               <UserAvatar size={20} space={0} user={sub?.slug} />
             </span>
             {sub?.slug}
-          </li>
-        ))}
-        {/* Default Feeds */}
-        <div className="p-4 text-xs font-bold">Feeds</div>
-        {feeds?.map((feed) => (
-          <li
-            key={feed?.page}
-            className={`p-2 pl-6 text-sm hover:bg-sky-600 hover:text-white cursor-pointer flex items-center dark:hover:bg-sky-600
-            ${
-              feed?.page?.toLowerCase() === selected?.toLowerCase() &&
-              "bg-gray-400 text-white dark:bg-neutral-700"
-            }
-            ${
-              feed?.page?.toLowerCase().startsWith(inputValue)
-                ? "block"
-                : "hidden"
-            }`}
-            onClick={() => {
-              if (feed?.page?.toLowerCase() !== selected.toLowerCase()) {
-                setSelected(feed?.page);
-                setSelectedIcon(feed?.icon);
-                setOpen(false);
-                setInputValue("");
-                router.push(`${feed?.loc}`);
-              }
-            }}
-          >
-            {" "}
-            <span className="mr-2 text-lg">{feed?.icon}</span>
-            {feed?.page}
           </li>
         ))}
       </ul>

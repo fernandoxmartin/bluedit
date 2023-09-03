@@ -40,6 +40,7 @@ export const GlobalProvider = ({ children }) => {
       value={{
         open,
         setOpen,
+        setIsOpen,
         isOpen,
         toggleNav,
         isModalOpen,

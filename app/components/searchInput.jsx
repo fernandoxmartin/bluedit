@@ -6,12 +6,14 @@ import UserAvatar from "./userAvatar";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useGlobalContext } from "../context/store";
 
 export default function SearchInput() {
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
   const dropdownRef = useRef(null);
   const router = useRouter();
+  const { setIsOpen } = useGlobalContext();
 
   const getSubs = async () => {
     const response = await axios.get(`/api/subs`);
@@ -33,6 +35,7 @@ export default function SearchInput() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     setSearchOpen(false);
+    setIsOpen(false);
     router.push(`/search?q=${query}`);
   };
 

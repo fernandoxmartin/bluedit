@@ -9,7 +9,7 @@ export default function Logout() {
     return (
       <>
         <button
-          className="px-6 py-2 rounded-lg bg-primary text-light border-2 border-light dark:bg-dark dark:border-primary"
+          className="px-6 py-2 rounded-lg bg-primary text-sm text-light border-2 border-light dark:bg-dark dark:border-primary"
           onClick={() => signOut()}
         >
           Log Out

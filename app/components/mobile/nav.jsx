@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import Feeds from "../feeds";
 import Theme from "../theme";
 import UserAvatar from "../userAvatar";
+import SearchInput from "../searchInput";
 
 export default function Nav() {
   const { isOpen } = useGlobalContext();
@@ -43,6 +44,11 @@ export default function Nav() {
         ) : (
           <div></div>
         )}
+
+        <div className="flex relative w-full my-2 pr-2 h-12 items-center rounded-md bg-white dark:bg-dark border dark:border-neutral-600">
+          <SearchInput />
+        </div>
+
         <div className="w-full mb-8">
           <h3 className="mt-8">Feeds</h3>
           <ul className="p-2">

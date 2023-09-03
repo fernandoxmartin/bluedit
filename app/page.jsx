@@ -1,5 +1,3 @@
-// import { CreatePostBtn } from "@/components/create-post-btn";
-import { getPosts } from "../lib/getPosts";
 import Posts from "./components/posts/posts";
 import { getUserId } from "@/lib/getUserId";
 import { getTopUsers } from "@/lib/getTopUsers";
@@ -9,7 +7,6 @@ import Top from "./components/top";
 import About from "./components/about";
 
 export default async function Home() {
-  const posts = await getPosts();
   const user = await getUserId();
   const topUsers = await getTopUsers();
   const topSubs = await getTopSubs();

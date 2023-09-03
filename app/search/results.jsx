@@ -71,8 +71,8 @@ export default function Results({ user }) {
           <Null query={q} />
         )}
       </div>
-      <div className="space-y-2 row-start-1 lg:row-auto">
-        <div className='hidden min-h-[288px] lg:flex w-full flex-col items-center rounded-md bg-light dark:bg-dark lg:mb-6 p-6"'>
+      <div className="space-y-2 row-start-2 col-span-2 lg:col-span-1 lg:row-auto">
+        <div className='min-h-[288px] lg:flex w-full flex-col items-center rounded-md bg-light dark:bg-dark lg:mb-6 p-6"'>
           <div className="w-full p-6">
             <h2 className="w-full mb-4">Communities</h2>
             <div className="w-full border-b-[0.5px] border-gray-300 dark:border-neutral-700 mb-2"></div>
