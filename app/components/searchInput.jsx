@@ -85,7 +85,7 @@ export default function SearchInput() {
                     >
                       <li className="flex items-center pl-4 py-2 rounded hover:bg-neutral-300 dark:hover:bg-neutral-700">
                         <UserAvatar size={25} space={2} user={sub.slug} />
-                        <p className="text-sm">
+                        <p className="text-sm text-light-text dark:text-white">
                           <span className="text-xs text-neutral-400">b/</span>
                           {sub.slug}
                         </p>

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Logout from "../logout";
 import { BiHome, BiGlobe } from "react-icons/bi";
-import Search from "../header/Search";
+import Search from "../header/search";
 import { useGlobalContext } from "@/app/context/store";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
