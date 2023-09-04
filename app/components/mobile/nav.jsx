@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Logout from "../logout";
-import { BiHome, BiRocket } from "react-icons/bi";
+import { BiHome, BiGlobe } from "react-icons/bi";
 import Search from "../header/Search";
 import { useGlobalContext } from "@/app/context/store";
 import { useSession } from "next-auth/react";
@@ -23,7 +23,7 @@ export default function Nav() {
 
   const feeds = [
     { page: "Home", loc: "/", icon: <BiHome /> },
-    { page: "Following", loc: "/b/following", icon: <BiRocket /> },
+    // { page: "All", loc: "/all", icon: <BiGlobe /> },
   ];
 
   return (
